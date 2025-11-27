@@ -1,0 +1,119 @@
+ @import "tailwindcss";
+
+ .container {
+  @apply max-w-7xl mx-auto px-4;
+}
+
+ body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* TOPBAR */
+.topbar {
+  background: linear-gradient(90deg, #39b44a, #f6ad29);
+  color: white;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.topbar-left span {
+  margin-right: 20px;
+}
+
+/* NAVBAR */
+.navbar {
+  background: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px #ccc;
+}
+
+.logo {
+  height: 50px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+}
+
+.btn-primary {
+  background: #39b44a;
+  padding: 10px 18px;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background: white;
+  box-shadow: 0 2px 4px #ccc;
+  padding: 10px;
+  display: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  padding: 50px;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-image img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+/* SERVICES */
+.services {
+  padding: 40px;
+}
+
+.services-grid {
+  display: flex;
+  gap: 20px;
+}
+
+.service-card {
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+/* FOOTER */
+.footer {
+  background: #222;
+  color: white;
+  padding: 40px;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.copy {
+  text-align: center;
+  margin-top: 20px;
+}

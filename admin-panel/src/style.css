@@ -1,0 +1,6 @@
+ @import "tailwindcss";
+
+ /* src/index.css - simple reset */
+body { margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f8fafc; color:#0f172a; }
+input, textarea, select, button { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
