@@ -8,44 +8,45 @@ export default function ServicesSection() {
       {/* HEADING AREA */}
       <div className="text-center px-6 mb-20">
         
-        <h2 className="text-5xl md:text-6xl font-extrabold text-white">
+        <h2 className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg">
           Our Services
         </h2>
 
-        {/* GREEN UNDERLINE replaced with WHITE */}
-        <div className="h-2 w-28 mx-auto bg-white rounded-full mt-5"></div>
+        {/* Underline */}
+        <div className="h-2 w-24 mx-auto bg-white rounded-full mt-4"></div>
 
         <p className="text-white/90 mt-6 max-w-3xl mx-auto text-xl leading-relaxed">
-          Supporting Maryland families with compassionate care, 
-          life-skills development, and personalized autism support programs.
+          Providing reliable, compassionate, and personalized support services 
+          that empower individuals and families in their medical, educational, 
+          and everyday needs.
         </p>
       </div>
 
       {/* GRID OF CARDS */}
       <div
         className="
-        max-w-7xl mx-auto px-6 
-        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-        gap-14 items-stretch
+          max-w-7xl mx-auto px-6 
+          grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+          gap-14 items-stretch
         "
       >
         <ServiceCard
           title="Respite Care (RC)"
-          desc="Structured short-term relief support designed for families and caregivers."
+          desc="Short-term support services that provide relief and balance for families and caregivers."
           link="/services/rc"
           Icon={FaHandsHelping}
         />
 
         <ServiceCard
-          title="Intensive Individual Support Services (IISS)"
-          desc="One-on-one developmental support focused on communication, behavior, and skill-building."
-          link="/services/iiss"
+          title="Individual Support Services (ISS)"
+          desc="One-on-one development and assistance focused on communication, daily skills, and personal growth."
+          link="/services/iss"
           Icon={FaChild}
         />
 
         <ServiceCard
           title="Family Consultation (FC)"
-          desc="Personalized guidance, strategies, and coaching for families navigating autism care."
+          desc="Guidance, planning, and personalized strategies to help families navigate medical, educational, and daily challenges."
           link="/services/fc"
           Icon={FaUsers}
         />

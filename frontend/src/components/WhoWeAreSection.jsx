@@ -3,50 +3,56 @@ import childImg from "../assets/services/social.jpeg";
 
 export default function WhoWeAreSection() {
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 px-6 items-center">
+    <section className="w-full py-20 md:py-28 bg-white">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 px-6 items-center">
 
-        {/* RIGHT IMAGE FIRST ON MOBILE */}
-        <div className="order-1 md:order-2 rounded-2xl overflow-hidden shadow-xl">
-          <img
-            src={childImg}
-            alt="Autism Support"
-            className="w-full h-[260px] sm:h-[320px] md:h-full object-cover"
-          />
+        {/* IMAGE */}
+        <div className="order-1 md:order-2">
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+            <img
+              src={childImg}
+              alt="Support Services Image"
+              className="w-full h-[280px] sm:h-[350px] md:h-[500px] object-cover"
+            />
+          </div>
         </div>
 
-        {/* LEFT CONTENT */}
-        <div className="order-2 md:order-1">
+        {/* CONTENT */}
+        <div className="order-2 md:order-1 space-y-6">
 
-          {/* SMALL LABEL */}
-          <p className="text-[#23B14D] font-semibold uppercase flex items-center gap-2 mb-3 tracking-wide text-sm">
-            <span className="text-yellow-400 text-lg">●</span>
-            Who We Are?
-          </p>
+          {/* LABEL */}
+          <div className="inline-block bg-[#e9f9ef] text-[#23B14D] px-4 py-1 rounded-full text-sm font-semibold tracking-wide">
+            WHO WE ARE
+          </div>
 
-          {/* MAIN TITLE */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-[#23B14D]">
-            We Specialize In Autism & Spectrum <br className="hidden sm:block" />
-            Support Services.
+          {/* HEADING */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-900">
+            Supporting Individuals & Families  
+            <span className="text-[#23B14D]"> With Care </span>  
+            And Trusted Guidance
           </h2>
 
-          {/* PARAGRAPH */}
-          <p className="text-gray-700 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed">
-            At PR5-Hearts Network, every child is valued for their unique abilities.
-            As a Maryland State–approved Autism Waiver provider, we partner with
-            families to create pathways toward independence, inclusion, and brighter futures.
+          {/* DESCRIPTION */}
+          <p className="text-gray-600 text-lg leading-relaxed">
+            We are committed to helping individuals and families access the right 
+            support—whether it’s related to medical assistance, education guidance, 
+            personal development, or navigating everyday challenges.
           </p>
 
-        
+          <p className="text-gray-600 text-lg leading-relaxed">
+            Our team works with dedication, compassion, and professionalism to ensure 
+            every person receives personalized services designed to improve their 
+            well-being and empower their growth.
+          </p>
 
-          {/* CTA BUTTON (smaller for mobile) */}
+          {/* BUTTON */}
           <a
             href="/about-us"
             className="
-              mt-8 inline-flex items-center gap-2 
+              inline-flex items-center gap-2 
               bg-[#23B14D] text-white font-semibold
-              px-6 py-3 rounded-lg shadow-md text-sm sm:text-base
-              hover:bg-[#1c9a42] transition-all
+              px-7 py-3 rounded-xl shadow-lg
+              hover:bg-[#19913d] transition-all text-base
             "
           >
             Learn More →

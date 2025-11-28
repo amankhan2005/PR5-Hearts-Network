@@ -7,7 +7,7 @@ if (!fs.existsSync(heroFolder)) {
   fs.mkdirSync(heroFolder, { recursive: true });
 }
 
-const BASE = process.env.BASE_URL || "https://autismpartner.onrender.com";
+const BASE = process.env.BASE_URL || "http://localhost:5000";
 
 /* ====================================================
    GET HERO (Images + Text)

@@ -1,4 +1,5 @@
- import {
+ import { useEffect, useState } from "react";
+import {
   FaHeart,
   FaHandsHelping,
   FaBrain,
@@ -12,16 +13,25 @@
   FaCheckCircle,
 } from "react-icons/fa";
 
- 
-// ✅ IMPORT YOUR IMAGES MANUALLY
 import heroImg from "../assets/services/home.png";
 import missionImg from "../assets/services/home.png";
 import valuesImg from "../assets/services/parent.jpg";
 import approachImg from "../assets/services/aba.webp";
 
 export default function About() {
+  // ------------------ DYNAMIC MAP ADDRESS ------------------
+  const [mapAddress, setMapAddress] = useState("");
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/map`)
+      .then((res) => res.json())
+      .then((data) => setMapAddress(data?.mapAddress || ""));
+  }, []);
+
+  // DEFAULT / FALLBACK ADDRESS
   const finalAddress =
-    "849 Fairmount Ave, Suite 200-T8, Towson, MD 21286";
+    mapAddress || "4919 Harford Road\nBaltimore, MD 21214";
+  // ----------------------------------------------------------
 
   return (
     <div className="bg-white text-gray-800">
@@ -45,13 +55,11 @@ export default function About() {
           <div className="w-20 h-1.5 bg-white rounded-full mx-auto mb-8"></div>
 
           <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
-            Providing Respite Care (RC), IISS, and Family Consultation (FC) under the Maryland Autism Waiver.
+            We provide trusted care, family support, and individual assistance that help 
+            people navigate medical, educational, and personal challenges with confidence.
           </p>
 
         </div>
-
-        {/* OPTIONAL: HERO IMAGE IN BACKGROUND (if needed) */}
-        {/* <img src={heroImg} className="absolute opacity-10 w-full h-full object-cover top-0 left-0" /> */}
       </section>
 
       {/* ✔ MISSION SECTION */}
@@ -66,18 +74,20 @@ export default function About() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A3F24] leading-tight">
-              Supporting Every Child  
+              Supporting Individuals & Families  
               <span className="block text-[#23B14D]">Every Step Of The Way</span>
             </h2>
 
             <p className="text-lg text-gray-700 leading-relaxed">
               At <span className="font-semibold text-[#23B14D]">PR5-Hearts Network</span>, 
-              we believe every child deserves understanding, respect, and tailored support.
+              our mission is to ensure that every person receives guidance, compassion, 
+              and access to essential support services.
             </p>
 
             <p className="text-gray-600 leading-relaxed">
-              We walk alongside families on their autism journey—providing tools, emotional support 
-              and growth opportunities for children across Maryland.
+              We help families navigate medical needs, educational planning, daily 
+              challenges, and personal development — offering reliable and personalized 
+              support tailored to each individual's journey.
             </p>
           </div>
 
@@ -118,7 +128,7 @@ export default function About() {
               </div>
               <h3 className="font-bold text-2xl mb-4 text-[#0A3F24]">Compassion</h3>
               <p className="text-gray-700">
-                We treat every family with respect, empathy and genuine care.
+                Providing every individual and family with understanding, care, and respect.
               </p>
             </div>
 
@@ -128,7 +138,7 @@ export default function About() {
               </div>
               <h3 className="font-bold text-2xl mb-4 text-[#0A3F24]">Collaboration</h3>
               <p className="text-gray-700">
-                We partner with families to create meaningful and lasting outcomes.
+                We work hand-in-hand with families to create meaningful outcomes.
               </p>
             </div>
 
@@ -138,7 +148,7 @@ export default function About() {
               </div>
               <h3 className="font-bold text-2xl mb-4 text-[#0A3F24]">Growth</h3>
               <p className="text-gray-700">
-                We celebrate every milestone and encourage progress at every step.
+                Helping individuals build confidence, skills, and independence.
               </p>
             </div>
 
@@ -171,14 +181,14 @@ export default function About() {
             </h2>
 
             <p className="text-gray-700 leading-relaxed">
-              We build strengths through:
+              We focus on building practical strengths and supporting individuals through:
             </p>
 
             <ul className="space-y-4">
               {[
                 "Daily living and independence skills",
-                "Social communication & emotional development",
-                "Structured support for families",
+                "Social communication and emotional development",
+                "Support for families navigating challenges",
                 "Evidence-aligned learning strategies",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
@@ -192,7 +202,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* MAP */}
+      {/* MAP — NOW 100% DYNAMIC */}
       <section className="py-12 px-6 bg-white">
         <div className="w-full h-96 shadow-lg rounded-2xl overflow-hidden">
           <iframe

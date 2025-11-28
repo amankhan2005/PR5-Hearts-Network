@@ -1,21 +1,44 @@
  import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logo from "../assets/logo/PR5-Hearts.webp";
+
+// fallback logo (local)
+import fallbackLogo from "../assets/logo/PR5-Hearts.webp";
+
+// import dynamic settings
+import { useSettings } from "../context/SettingsContext";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [serviceOpen, setServiceOpen] = useState(false);
   const [resourceOpen, setResourceOpen] = useState(false);
 
+  const { settings } = useSettings();
+
+  // BACKEND BASE URL
+  const backend = (import.meta.env.VITE_BACKEND_URL || "").replace(/\/$/, "");
+
+  // ---------------------- DYNAMIC LOGO (PERFECT LOGIC) ----------------------
+  const rawLogo = settings?.logo;
+
+  const logoSrc =
+    rawLogo && rawLogo !== "" && rawLogo !== null
+      ? rawLogo.startsWith("http")
+        ? rawLogo
+        : `${backend}${rawLogo}`
+      : fallbackLogo; // fallback always
+
   return (
     <nav className="w-full bg-white shadow-md sticky top-0 z-40">
-      {/* MAIN CONTAINER */}
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
 
-        {/* LOGO */}
+        {/* LOGO (dynamic) */}
         <Link to="/" className="flex items-center">
-          <img src={logo} className="h-16 md:h-20" alt="PR5 Logo" />
+          <img
+            src={logoSrc}
+            className="h-16 md:h-20 object-contain"
+            alt="PR5 Logo"
+          />
         </Link>
 
         {/* DESKTOP NAV LINKS */}
@@ -79,15 +102,9 @@ export default function Navbar() {
 
             {serviceOpen && (
               <div className="ml-4 mt-2 flex flex-col gap-2 text-green-700">
-                <Link className="block" to="/services/rc" onClick={() => setOpen(false)}>
-                  Respite Care (RC)
-                </Link>
-                <Link className="block" to="/services/iiss" onClick={() => setOpen(false)}>
-                  IISS
-                </Link>
-                <Link className="block" to="/services/fc" onClick={() => setOpen(false)}>
-                  Family Consultation (FC)
-                </Link>
+                <Link className="block" to="/services/rc" onClick={() => setOpen(false)}>Respite Care (RC)</Link>
+                <Link className="block" to="/services/iiss" onClick={() => setOpen(false)}>IISS</Link>
+                <Link className="block" to="/services/fc" onClick={() => setOpen(false)}>Family Consultation (FC)</Link>
               </div>
             )}
           </div>
@@ -104,9 +121,7 @@ export default function Navbar() {
 
             {resourceOpen && (
               <div className="ml-4 mt-2 flex flex-col gap-2 text-green-700">
-                <Link className="block" to="/faq" onClick={() => setOpen(false)}>
-                  FAQ
-                </Link>
+                <Link className="block" to="/faq" onClick={() => setOpen(false)}>FAQ</Link>
               </div>
             )}
           </div>

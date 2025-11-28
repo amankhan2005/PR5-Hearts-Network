@@ -7,28 +7,28 @@ export default function IISS() {
       {/* 🍃 HERO SECTION */}
       <section className="relative bg-green-600 py-20 px-6 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
-          Intensive Individual Support Services (IISS)
+          Individual Support Services (ISS)
         </h1>
 
         <p className="text-white text-xl mt-5 max-w-3xl mx-auto">
-          Personalized one-on-one behavioral support and adaptive skills training 
-          for children enrolled in the Maryland Autism Waiver.
+          Personalized one-on-one support that helps children and individuals build
+          communication, social, emotional, and daily living skills at home or in the community.
         </p>
 
         <div className="w-20 h-1.5 bg-white rounded-full mx-auto mt-8"></div>
       </section>
 
-      {/* 🍃 WHAT IS IISS */}
+      {/* 🍃 WHAT IS ISS */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          What Is IISS?
+          What Is Individual Support Services?
         </h2>
 
         <p className="text-gray-700 text-lg text-center mt-6 max-w-3xl mx-auto">
-          Intensive Individual Support Services (IISS) are one-on-one, structured 
-          support sessions designed to help children with autism build behavioral, 
-          communication, and adaptive living skills. These services are tailored to 
-          each child’s needs and are delivered at home or in the community.
+          Individual Support Services (ISS) provide structured one-on-one assistance to help
+          individuals develop important life skills. These sessions focus on communication,
+          social interaction, emotional growth, and daily living abilities — all tailored to
+          the person’s unique needs and goals.
         </p>
 
         <div className="w-20 h-1.5 bg-[#23B14D] rounded-full mx-auto mt-8"></div>
@@ -39,17 +39,17 @@ export default function IISS() {
         <div className="max-w-7xl mx-auto">
 
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-14">
-            Benefits of IISS Support
+            Benefits of ISS Support
           </h3>
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
               "Personalized one-on-one skill-building support",
-              "Improves communication & social skills",
+              "Improves communication & social interaction",
               "Promotes independence in daily routines",
-              "Enhances emotional regulation & positive behaviors",
-              "Supports community engagement & participation",
-              "Evidence-based teaching strategies tailored to the child"
+              "Encourages emotional growth & confidence",
+              "Supports community participation & engagement",
+              "Uses structured, evidence-informed strategies"
             ].map((item, i) => (
               <div
                 key={i}
@@ -71,21 +71,20 @@ export default function IISS() {
       {/* 🍃 WHO QUALIFIES */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          Who Qualifies for IISS Services?
+          Who Can Receive ISS Services?
         </h2>
 
         <p className="text-gray-700 text-lg mt-6 text-center max-w-3xl mx-auto">
-          IISS services are available to children and adolescents who are enrolled 
-          in the Maryland Autism Waiver and require structured, individualized 
-          behavioral or adaptive living support.
+          ISS services are available to children, youth, or individuals who may benefit from
+          structured skill-building, emotional support, or guided assistance in everyday routines.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mt-16">
           {[
-            "Children (birth–21 years) diagnosed with autism",
-            "Enrolled in the Maryland Autism Waiver",
-            "Require support with communication, behavior, or daily living skills",
-            "Need structured one-on-one guidance at home or in the community"
+            "Individuals who need extra support with communication and social skills",
+            "Children or youth requiring guidance with daily routines",
+            "Families seeking personalized one-on-one skill development",
+            "Those who benefit from structured support at home or in the community"
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4">
               <div className="bg-[#23B14D] p-3 rounded-xl">
@@ -97,21 +96,21 @@ export default function IISS() {
         </div>
       </section>
 
-      {/* 🍃 WHAT OUR IISS PROVIDERS DO */}
+      {/* 🍃 WHAT PROVIDERS DO */}
       <section className="py-16 px-6 bg-[#F5FFF9]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-12">
-            What Our IISS Providers Help With
+            What Our ISS Providers Help With
           </h3>
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
-              "Behavioral skill-building",
+              "Skill-building and guided learning",
               "Communication & social interaction",
-              "Emotional regulation strategies",
+              "Emotional regulation & coping strategies",
               "Daily living & self-help routines",
               "Community participation & safety awareness",
-              "Encouraging independence & confidence"
+              "Encouraging independence and confidence"
             ].map((item, i) => (
               <div
                 key={i}
@@ -128,12 +127,12 @@ export default function IISS() {
       {/* 🍃 CTA */}
       <section className="py-20 px-6 bg-white text-center">
         <h3 className="text-4xl font-bold text-[#0A3F24] mb-6">
-          Need Intensive Support for Your Child?
+          Need Individual Support Services?
         </h3>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-lg mb-10">
-          Connect with our team to learn more about IISS and begin your Maryland 
-          Autism Waiver support journey.
+          Contact us to learn more about ISS and explore how personalized one-on-one support
+          can help your child or loved one build confidence and essential skills.
         </p>
 
         <a

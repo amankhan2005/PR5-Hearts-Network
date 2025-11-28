@@ -1,4 +1,4 @@
-// src/pages/AdminDashboard.jsx
+ // src/pages/AdminDashboard.jsx
 import React, { useEffect, useState } from "react";
 import { fetchDashboard } from "../api/settingsService";
 
@@ -49,7 +49,7 @@ export default function AdminDashboard({ creds }) {
                 darkMode ? "border-gray-700" : "border-black/10"
               } rounded-full`}
             />
-            <div className="absolute inset-0 border-4 border-transparent border-t-green-500 rounded-full animate-spin" />
+            <div className="absolute inset-0 border-4 border-transparent border-t-orange-500 rounded-full animate-spin" />
             <div
               className="absolute inset-4 border-4 border-transparent border-t-green-500 rounded-full animate-spin"
               style={{
@@ -135,7 +135,7 @@ export default function AdminDashboard({ creds }) {
       label: "Contacts",
       count: data.contactsCount ?? 0,
       subtext: `${data.unhandledContacts ?? 0} unhandled`,
-      accent: "green", // Changed from "indigo" to "green"
+      accent: "orange", // Changed from "indigo" to "orange"
       icon: (
         <svg
           className="w-7 h-7"
@@ -184,15 +184,15 @@ export default function AdminDashboard({ creds }) {
   ];
 
   const accentMap = {
-    green: {
-      // Changed from "indigo" to "green"
+    orange: {
+      // Changed from "indigo" to "orange"
       badge: darkMode
-        ? "bg-green-900/30 text-green-300 border-green-700/50"
-        : "bg-green-100 text-green-700 border-green-300",
-      icon: "bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg",
-      dot: "bg-green-500 shadow-[0_0_12px_rgba(251,146,60,0.6)]",
-      count: darkMode ? "text-green-300" : "text-green-700",
-      halo: "from-green-500/20 via-green-400/10 to-transparent",
+        ? "bg-orange-900/30 text-orange-300 border-orange-700/50"
+        : "bg-orange-100 text-orange-700 border-orange-300",
+      icon: "bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg",
+      dot: "bg-orange-500 shadow-[0_0_12px_rgba(251,146,60,0.6)]",
+      count: darkMode ? "text-orange-300" : "text-orange-700",
+      halo: "from-orange-500/20 via-orange-400/10 to-transparent",
       chart: "rgb(251, 146, 60)",
     },
     green: {
@@ -216,7 +216,7 @@ export default function AdminDashboard({ creds }) {
       {/* BACKGROUND DECORATION */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
       </div>
 
       {/* MAIN WRAPPER */}
@@ -426,7 +426,7 @@ export default function AdminDashboard({ creds }) {
           <Section
             title="Latest Contacts"
             count={`${data.latestContacts?.length ?? 0} Recent`}
-            color="green" // Changed from "indigo" to "green"
+            color="orange" // Changed from "indigo" to "orange"
             items={data.latestContacts}
             type="contact"
             darkMode={darkMode}
@@ -450,22 +450,22 @@ export default function AdminDashboard({ creds }) {
 /* SECTION COMPONENT */
 function Section({ title, count, color, items, type, darkMode }) {
   const borderColor =
-    color === "green"
+    color === "orange"
       ? darkMode
-        ? "border-green-800/30"
-        : "border-green-200"
+        ? "border-orange-800/30"
+        : "border-orange-200"
       : darkMode
       ? "border-green-800/30"
       : "border-green-200";
   const badgeBg =
-    color === "green"
+    color === "orange"
       ? darkMode
-        ? "bg-green-900/30 text-green-300 border-green-700/50"
-        : "bg-green-100 text-green-700 border-green-300"
+        ? "bg-orange-900/30 text-orange-300 border-orange-700/50"
+        : "bg-orange-100 text-orange-700 border-orange-300"
       : darkMode
       ? "bg-green-900/30 text-green-300 border-green-700/50"
       : "bg-green-100 text-green-700 border-green-300";
-  const dot = color === "green" ? "bg-green-500" : "bg-green-500";
+  const dot = color === "orange" ? "bg-orange-500" : "bg-green-500";
   const textColor = darkMode ? "text-white" : "text-gray-900";
   const subTextColor = darkMode ? "text-gray-400" : "text-gray-600";
 
@@ -517,7 +517,7 @@ function Section({ title, count, color, items, type, darkMode }) {
                     <div className="flex items-center gap-4">
                       <div
                         className={`w-12 h-12 rounded-xl ${
-                          color === "green" ? "bg-green-500" : "bg-green-500"
+                          color === "orange" ? "bg-orange-500" : "bg-green-500"
                         } text-white font-bold flex 
                         items-center justify-center text-xl`}
                       >
@@ -530,8 +530,8 @@ function Section({ title, count, color, items, type, darkMode }) {
                         </div>
                         <div
                           className={`text-sm ${
-                            color === "green"
-                              ? "text-green-400"
+                            color === "orange"
+                              ? "text-orange-400"
                               : "text-green-400"
                           }`}
                         >
@@ -548,8 +548,8 @@ function Section({ title, count, color, items, type, darkMode }) {
                           } border ${
                             darkMode ? "border-gray-600" : "border-gray-200"
                           } ${
-                            color === "green"
-                              ? "text-green-400"
+                            color === "orange"
+                              ? "text-orange-400"
                               : "text-green-400"
                           } font-bold`}
                         >
@@ -596,8 +596,8 @@ function Section({ title, count, color, items, type, darkMode }) {
                       } border ${
                         darkMode ? "border-gray-600" : "border-gray-200"
                       } ${
-                        color === "green"
-                          ? "text-green-400"
+                        color === "orange"
+                          ? "text-orange-400"
                           : "text-green-400"
                       } font-bold`}
                     >
@@ -635,12 +635,12 @@ function Section({ title, count, color, items, type, darkMode }) {
 
 /* EMPTY STATE COMPONENT */
 function EmptyState({ title, subtitle, color, darkMode }) {
-  const iconColor = color === "green" ? "text-green-400" : "text-green-400";
+  const iconColor = color === "orange" ? "text-orange-400" : "text-green-400";
   const bgColor =
-    color === "green"
+    color === "orange"
       ? darkMode
-        ? "bg-green-900/20"
-        : "bg-green-100"
+        ? "bg-orange-900/20"
+        : "bg-orange-100"
       : darkMode
       ? "bg-green-900/20"
       : "bg-green-100";

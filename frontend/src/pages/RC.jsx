@@ -7,11 +7,12 @@ export default function RC() {
       {/* 🍃 HERO SECTION */}
       <section className="relative bg-green-600 py-20 px-6 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
-          Respite Care (RC) Services in Maryland
+          Respite Care (RC) Services
         </h1>
 
         <p className="text-white text-xl mt-5 max-w-3xl mx-auto">
-          Compassionate, temporary support designed for Maryland families caring for children with autism through the Autism Waiver Program.
+          Compassionate short-term care that gives families the support, rest, 
+          and balance they need while ensuring their loved ones are safe and engaged.
         </p>
 
         <div className="w-20 h-1.5 bg-white rounded-full mx-auto mt-8"></div>
@@ -24,9 +25,10 @@ export default function RC() {
         </h2>
 
         <p className="text-gray-700 text-lg text-center mt-6 max-w-3xl mx-auto">
-          Respite Care (RC) is a short-term support service that provides relief to families caring for a child with autism. 
-          It allows caregivers time to rest, manage personal responsibilities, and reduce stress while ensuring their child receives
-          safe, structured, and professional supervision.
+          Respite Care provides temporary support for families and caregivers who need 
+          time to rest, attend work or appointments, or manage personal responsibilities.  
+          It ensures that individuals receive safe, structured, and caring supervision 
+          from trained support professionals.
         </p>
 
         <div className="w-20 h-1.5 bg-[#23B14D] rounded-full mx-auto mt-8"></div>
@@ -37,17 +39,17 @@ export default function RC() {
         <div className="max-w-7xl mx-auto">
 
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-14">
-            Benefits of Respite Care for Autism Families
+            Benefits of Respite Care
           </h3>
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
-              "Safe and structured supervision by trained professionals",
-              "Gives caregivers essential time for rest, work, and personal needs",
-              "Improves emotional regulation and reduces stress-related behaviors",
-              "Helps families during emergencies or high-stress situations",
-              "Supports overall mental and emotional well-being of families",
-              "Includes enriching, meaningful activities for children"
+              "Safe and reliable supervision by trained staff",
+              "Provides caregivers time for rest, work, or personal needs",
+              "Reduces stress and supports emotional well-being",
+              "Helpful during emergencies or schedule conflicts",
+              "Creates balance and stability for families",
+              "Offers meaningful, engaging activities for individuals"
             ].map((item, i) => (
               <div
                 key={i}
@@ -69,20 +71,21 @@ export default function RC() {
       {/* 🍃 WHO QUALIFIES */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          Who Qualifies for Respite Care Services?
+          Who Can Receive Respite Care?
         </h2>
 
         <p className="text-gray-700 text-lg mt-6 text-center max-w-3xl mx-auto">
-          Children enrolled in the Maryland Autism Waiver who require temporary supervision, structured support,
-          or assistance with daily routines are eligible for Respite Care services.
+          Respite Care is available for children, youth, or individuals who require 
+          temporary supervision, structured activities, or additional support to meet 
+          their daily needs — giving families peace of mind and flexibility.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mt-16">
           {[
-            "Children (birth–21 years) diagnosed with autism and enrolled in the Maryland Autism Waiver",
-            "Families needing short-term caregiving relief",
-            "Parents unable to provide supervision due to work, appointments, or personal needs",
-            "Households experiencing emergencies, schedule conflicts, or high-stress periods"
+            "Individuals who need short-term supervision or engagement",
+            "Families needing temporary caregiving assistance",
+            "Parents with work, appointments, or personal obligations",
+            "Households facing emergencies, stress, or schedule conflicts"
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4">
               <div className="bg-[#23B14D] p-3 rounded-xl">
@@ -94,7 +97,7 @@ export default function RC() {
         </div>
       </section>
 
-      {/* 🍃 WHAT OUR RC PROVIDERS DO */}
+      {/* 🍃 WHAT PROVIDERS DO */}
       <section className="py-16 px-6 bg-[#F5FFF9]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-12">
@@ -104,11 +107,11 @@ export default function RC() {
           <div className="grid md:grid-cols-3 gap-10">
             {[
               "Supervision and safety monitoring",
-              "Engaging, structured play and activities",
-              "Support with daily living routines (non-medical)",
-              "Reinforcing positive behavior strategies",
-              "Promoting communication skills",
-              "Encouraging independence and confidence"
+              "Engaging activities and structured play",
+              "Support with daily routines and tasks",
+              "Encouraging positive behaviors and habits",
+              "Promoting communication and social interaction",
+              "Helping build independence and confidence"
             ].map((item, i) => (
               <div
                 key={i}
@@ -125,11 +128,12 @@ export default function RC() {
       {/* 🍃 CTA */}
       <section className="py-20 px-6 bg-white text-center">
         <h3 className="text-4xl font-bold text-[#0A3F24] mb-6">
-          Need Respite Care Support in Maryland?
+          Need Respite Care Support?
         </h3>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-lg mb-10">
-          Contact us to learn more about Respite Care and begin your Maryland Autism Waiver enrollment process.
+          Contact us to learn more about Respite Care services and how we can help 
+          support your family with flexible, reliable, and caring short-term support.
         </p>
 
         <a

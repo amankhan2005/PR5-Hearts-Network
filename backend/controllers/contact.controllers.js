@@ -1,10 +1,12 @@
-// controllers/contact.controllers.js
+ // controllers/contact.controllers.js
 import { sendMail } from "../utils/sendMail.js";
 import ContactLead from "../models/contact.models.js";
-import User from "../models/User.models.js"; // <-- IMPORTANT: register "User" model
+import User from "../models/User.models.js";
 import { Parser as Json2csvParser } from "json2csv";
 
-/** Escape HTML for safe email display */
+/* ----------------------------------------------------------- */
+/* SAFE HTML                                                   */
+/* ----------------------------------------------------------- */
 function escapeHtml(str = "") {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -15,11 +17,30 @@ function escapeHtml(str = "") {
 }
 
 /* ----------------------------------------------------------- */
-/*  CREATE INQUIRY (Save → Send Admin Mail → Send User Mail)   */
+/* ENUM NORMALIZATION → Match your MongoDB Schema              */
+/* ----------------------------------------------------------- */
+const SERVICE_MAP = {
+  "Respite Care (RC)": "RC",
+  "Individual Support Services (ISS)": "ISS",
+  "Family Consultation (FC)": "FC",
+  "General Support Inquiry": "GENERAL",
+  Other: "OTHER",
+};
+
+const LEAD_SOURCE_MAP = {
+  Website: "website",
+  "Google Search": "google",
+  Facebook: "facebook",
+  Referral: "referral",
+  Other: "other",
+};
+
+/* ----------------------------------------------------------- */
+/* CREATE INQUIRY                                              */
 /* ----------------------------------------------------------- */
 export const createInquiry = async (req, res) => {
   try {
-    const {
+    let {
       parentName,
       email,
       phone,
@@ -43,66 +64,100 @@ export const createInquiry = async (req, res) => {
       });
     }
 
+    // Fix bad enum values
+    serviceInterest = SERVICE_MAP[serviceInterest] || "OTHER";
+    leadSource = LEAD_SOURCE_MAP[leadSource] || "other";
+
     const saved = await ContactLead.create({
       parentName: parentName.trim(),
       email: email.trim().toLowerCase(),
       phone: phone.trim(),
-
       childName,
       childAge,
-
       city,
       state,
       zipCode,
-
       message,
       serviceInterest,
       preferredContact,
       bestTimeToReach,
-
-      leadSource: leadSource || "Website",
+      leadSource,
       utm: utm || {},
-
       ipAddress: req.ip || req.headers["x-forwarded-for"] || "N/A",
       userAgent: req.get("User-Agent") || "N/A",
-
       status: "new",
     });
 
+    /* ----------------------------------------------------------- */
+    /* ADMIN EMAIL (PR5-Hearts Network)                            */
+    /* ----------------------------------------------------------- */
     const adminHtml = `
-      <h2>📩 New Inquiry - Autism ABA Partners</h2>
-      <p><strong>Parent:</strong> ${escapeHtml(saved.parentName)}</p>
+      <h2 style="color:#064e3b;">📩 New Inquiry — PR5-Hearts Network</h2>
+
+      <p><strong>Parent/Guardian:</strong> ${escapeHtml(saved.parentName)}</p>
       <p><strong>Email:</strong> ${escapeHtml(saved.email)}</p>
       <p><strong>Phone:</strong> ${escapeHtml(saved.phone)}</p>
-      <p><strong>Child:</strong> ${escapeHtml(saved.childName || "N/A")} (Age: ${escapeHtml(saved.childAge || "N/A")})</p>
-      <p><strong>Service Interest:</strong> ${escapeHtml(saved.serviceInterest)}</p>
+
+      <p><strong>Child Name:</strong> ${escapeHtml(saved.childName || "N/A")}</p>
+      <p><strong>Child Age:</strong> ${escapeHtml(saved.childAge || "N/A")}</p>
+
+      <p><strong>Service Interested:</strong> ${escapeHtml(saved.serviceInterest)}</p>
       <p><strong>Preferred Contact:</strong> ${escapeHtml(saved.preferredContact)}</p>
-      <p><strong>Best Time:</strong> ${escapeHtml(saved.bestTimeToReach)}</p>
-      <p><strong>Location:</strong> ${escapeHtml(saved.city)}, ${escapeHtml(saved.state)} ${escapeHtml(saved.zipCode)}</p>
+      <p><strong>Best Time To Reach:</strong> ${escapeHtml(saved.bestTimeToReach || "N/A")}</p>
+
+      <p><strong>Location:</strong>
+        ${escapeHtml(saved.city || "")}, 
+        ${escapeHtml(saved.state || "")} 
+        ${escapeHtml(saved.zipCode || "")}
+      </p>
+
       <p><strong>Message:</strong><br>${escapeHtml(saved.message)}</p>
+
       <hr/>
-      <small>IP: ${escapeHtml(saved.ipAddress)}<br>User Agent: ${escapeHtml(saved.userAgent)}</small>
+      <p><small>
+        Lead Source: ${escapeHtml(saved.leadSource)}<br/>
+        IP: ${escapeHtml(saved.ipAddress)}<br/>
+        User Agent: ${escapeHtml(saved.userAgent)}
+      </small></p>
     `;
 
+    /* ----------------------------------------------------------- */
+    /* USER EMAIL — PR5-Hearts Network (Green Theme)               */
+    /* ----------------------------------------------------------- */
     const userHtml = `
       <div style="font-family: Arial; color: #333;">
-        <h2 style="color:#ff7a00;">Thank You for Contacting Autism ABA Partners</h2>
+        <h2 style="color:#047857;">Thank You for Contacting PR5-Hearts Network</h2>
+
         <p>Hello ${escapeHtml(saved.parentName)},</p>
-        <p>We’ve received your message. Our team will reach out within 24 hours.</p>
-        <p><strong>Your Message:</strong><br>${escapeHtml(saved.message)}</p>
-        <p>Warm regards,<br/>Autism ABA Partners</p>
+
+        <p>
+          Thank you for reaching out to PR5-Hearts Network.  
+          Our support team has received your request and will reach out shortly.
+        </p>
+
+        <p>
+          PR5-Hearts Network is committed to offering guidance, compassion, 
+          and essential support services tailored to every individual's needs.
+        </p>
+
+        <p>
+          We help families navigate medical care, educational planning, 
+          daily challenges, and developmental support with empathy and reliability.
+        </p>
+
+        <p>Warm regards,<br/><strong>PR5-Hearts Network Team</strong></p>
       </div>
     `;
 
     await Promise.all([
       sendMail({
         to: process.env.ADMIN_EMAIL,
-        subject: "📩 New Inquiry - Autism ABA Partners",
+        subject: "📩 New Inquiry — PR5-Hearts Network",
         html: adminHtml,
       }),
       sendMail({
         to: saved.email,
-        subject: "Thank You — Autism ABA Partners",
+        subject: "Thank You — PR5-Hearts Network",
         html: userHtml,
       }),
     ]);
@@ -123,7 +178,7 @@ export const createInquiry = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* GET ALL (Simple) */
+/* GET ALL (Public)                                            */
 /* ----------------------------------------------------------- */
 export const getAllInquiry = async (_req, res) => {
   try {
@@ -134,16 +189,14 @@ export const getAllInquiry = async (_req, res) => {
   }
 };
 
-/* ----------------------------------------------------------- */
-/* Helpers for Admin list */
-/* ----------------------------------------------------------- */
+/* Helpers */
 const rx = (s) =>
   new RegExp(String(s).trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i");
 const clamp = (n, min, max) =>
-  Math.min(Math.max(parseInt(n || 0, 10), min), max);
+  Math.min(Math.max(parseInt(n || 0), min), max);
 
 /* ----------------------------------------------------------- */
-/* GET ALL (Admin — pagination + filters + populate)           */
+/* GET ALL (ADMIN — filters + pagination)                      */
 /* ----------------------------------------------------------- */
 export const getAllInquiryAdmin = async (req, res) => {
   try {
@@ -160,7 +213,7 @@ export const getAllInquiryAdmin = async (req, res) => {
       source,
       from,
       to,
-      assigned, // true/false
+      assigned,
       sort = "-createdAt",
     } = req.query;
 
@@ -189,8 +242,8 @@ export const getAllInquiryAdmin = async (req, res) => {
     if (source) filter.leadSource = source;
 
     if (typeof assigned !== "undefined") {
-      const yes = String(assigned).toLowerCase() === "true";
-      filter.assignedStaff = yes ? { $ne: null } : null;
+      filter.assignedStaff =
+        String(assigned).toLowerCase() === "true" ? { $ne: null } : null;
     }
 
     if (from || to) {
@@ -199,16 +252,17 @@ export const getAllInquiryAdmin = async (req, res) => {
       if (to) filter.createdAt.$lte = new Date(to);
     }
 
-    const pageNum = clamp(page, 1, 1e9);
+    const pageNum = clamp(page, 1, 999999999);
     const perPage = clamp(limit, 1, 100);
 
     const [items, total] = await Promise.all([
       ContactLead.find(filter)
-        .populate("assignedStaff", "name email") // now safe because User is imported
+        .populate("assignedStaff", "name email")
         .sort(sort)
         .skip((pageNum - 1) * perPage)
         .limit(perPage)
         .lean(),
+
       ContactLead.countDocuments(filter),
     ]);
 
@@ -227,14 +281,17 @@ export const getAllInquiryAdmin = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* GET BY ID (Admin)                                           */
+/* GET BY ID                                                   */
 /* ----------------------------------------------------------- */
 export const getInquiryById = async (req, res) => {
   try {
     const item = await ContactLead.findById(req.params.id)
       .populate("assignedStaff", "name email")
       .lean();
-    if (!item) return res.status(404).json({ ok: false, message: "Not found" });
+
+    if (!item)
+      return res.status(404).json({ ok: false, message: "Not found" });
+
     return res.json({ ok: true, item });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err.message });
@@ -242,48 +299,33 @@ export const getInquiryById = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* UPDATE (Admin)                                              */
+/* UPDATE INQUIRY                                              */
 /* ----------------------------------------------------------- */
 export const updateInquiry = async (req, res) => {
   try {
     const { id } = req.params;
-    const {
-      status,
-      assignedStaff,
-      preferredContact,
-      bestTimeToReach,
-      serviceInterest,
-      city, state, zipCode,
-      parentName, email, phone,
-      childName, childAge,
-      message,
-      leadSource,
-    } = req.body || {};
+    const body = req.body || {};
 
-    const update = {};
-    if (status) update.status = status;
-    if (typeof assignedStaff !== "undefined") update.assignedStaff = assignedStaff || null;
-    if (preferredContact) update.preferredContact = preferredContact;
-    if (typeof bestTimeToReach !== "undefined") update.bestTimeToReach = bestTimeToReach || "";
+    if (body.serviceInterest)
+      body.serviceInterest = SERVICE_MAP[body.serviceInterest] || "OTHER";
 
-    if (serviceInterest) update.serviceInterest = serviceInterest;
-    if (typeof city !== "undefined") update.city = city || "";
-    if (typeof state !== "undefined") update.state = state || "";
-    if (typeof zipCode !== "undefined") update.zipCode = zipCode || "";
+    if (body.leadSource)
+      body.leadSource = LEAD_SOURCE_MAP[body.leadSource] || "other";
 
-    if (parentName) update.parentName = parentName;
-    if (email) update.email = String(email).toLowerCase();
-    if (phone) update.phone = phone;
-    if (typeof childName !== "undefined") update.childName = childName || "";
-    if (typeof childAge !== "undefined") update.childAge = childAge;
-    if (message) update.message = message;
-    if (leadSource) update.leadSource = leadSource;
+    if (body.email)
+      body.email = String(body.email).toLowerCase();
 
-    const updated = await ContactLead.findByIdAndUpdate(id, { $set: update }, { new: true })
+    const updated = await ContactLead.findByIdAndUpdate(
+      id,
+      { $set: body },
+      { new: true }
+    )
       .populate("assignedStaff", "name email")
       .lean();
 
-    if (!updated) return res.status(404).json({ ok: false, message: "Not found" });
+    if (!updated)
+      return res.status(404).json({ ok: false, message: "Not found" });
+
     return res.json({ ok: true, item: updated });
   } catch (err) {
     console.error("updateInquiry error:", err);
@@ -292,11 +334,12 @@ export const updateInquiry = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* BULK UPDATE (Admin)                                         */
+/* BULK UPDATE                                                 */
 /* ----------------------------------------------------------- */
 export const bulkUpdateInquiry = async (req, res) => {
   try {
     const { ids = [], action = "", value } = req.body || {};
+
     if (!Array.isArray(ids) || ids.length === 0) {
       return res.status(400).json({ ok: false, message: "ids[] required" });
     }
@@ -306,7 +349,11 @@ export const bulkUpdateInquiry = async (req, res) => {
     else if (action === "assign") update = { assignedStaff: value || null };
     else return res.status(400).json({ ok: false, message: "Invalid action" });
 
-    const result = await ContactLead.updateMany({ _id: { $in: ids } }, update);
+    const result = await ContactLead.updateMany(
+      { _id: { $in: ids } },
+      update
+    );
+
     return res.json({ ok: true, result });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err.message });
@@ -314,12 +361,15 @@ export const bulkUpdateInquiry = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* DELETE (Admin)                                              */
+/* DELETE INQUIRY                                              */
 /* ----------------------------------------------------------- */
 export const deleteInquiry = async (req, res) => {
   try {
     const deleted = await ContactLead.findByIdAndDelete(req.params.id);
-    if (!deleted) return res.status(404).json({ ok: false, message: "Not found" });
+
+    if (!deleted)
+      return res.status(404).json({ ok: false, message: "Not found" });
+
     return res.json({ ok: true, message: "Deleted", deleted });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err.message });
@@ -327,22 +377,24 @@ export const deleteInquiry = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* EXPORT CSV (Admin)                                          */
+/* EXPORT CSV                                                  */
 /* ----------------------------------------------------------- */
 export const exportInquiryCsv = async (req, res) => {
   try {
-    // Reuse admin listing with big limit and get the returned object
     const data = await getAllInquiryAdmin(
       { ...req, query: { ...req.query, page: 1, limit: 100000 } },
-      { json: (d) => d } // fake res -> returns payload object
+      { json: (d) => d }
     );
+
     const items = data.items || [];
 
     const flat = items.map((it) => ({
       ...it,
       assignedStaff:
         typeof it.assignedStaff === "object" && it.assignedStaff
-          ? (it.assignedStaff.email || it.assignedStaff.name || it.assignedStaff._id)
+          ? it.assignedStaff.email ||
+            it.assignedStaff.name ||
+            it.assignedStaff._id
           : it.assignedStaff || "",
     }));
 
@@ -381,7 +433,7 @@ export const exportInquiryCsv = async (req, res) => {
 };
 
 /* ----------------------------------------------------------- */
-/* DASHBOARD STATS (Admin)                                     */
+/* DASHBOARD STATS                                             */
 /* ----------------------------------------------------------- */
 export const getInquiryStats = async (_req, res) => {
   try {

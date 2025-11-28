@@ -11,8 +11,8 @@ export default function FC() {
         </h1>
 
         <p className="text-white text-xl mt-5 max-w-3xl mx-auto">
-          Professional guidance and support for parents and caregivers of children 
-          enrolled in the Maryland Autism Waiver.
+          Professional support and guidance designed to help families strengthen routines, 
+          improve communication, and build confidence in supporting their loved ones.
         </p>
 
         <div className="w-20 h-1.5 bg-white rounded-full mx-auto mt-8"></div>
@@ -25,10 +25,10 @@ export default function FC() {
         </h2>
 
         <p className="text-gray-700 text-lg text-center mt-6 max-w-3xl mx-auto">
-          Family Consultation (FC) provides parents and caregivers with expert guidance, 
-          problem-solving strategies, and ongoing support to improve their child’s behavior, 
-          communication, and daily functioning. FC empowers families with the tools they need 
-          to reinforce positive skills and create consistent routines at home and in the community.
+          Family Consultation (FC) provides caregivers with guidance, coaching, and practical 
+          strategies to support their child's daily routines, communication, emotional well-being, 
+          and overall development. The goal is to empower families with tools they can use at 
+          home, school, and in the community.
         </p>
 
         <div className="w-20 h-1.5 bg-[#23B14D] rounded-full mx-auto mt-8"></div>
@@ -44,12 +44,12 @@ export default function FC() {
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
-              "Improves communication between caregivers and support providers",
-              "Teaches evidence-based behavior management strategies",
-              "Strengthens home routines and transitions",
-              "Helps reduce challenging behaviors",
+              "Strengthens communication and collaboration within the family",
+              "Provides practical tools for managing daily routines",
+              "Helps improve transitions, structure, and consistency at home",
               "Builds caregiver confidence in supporting their child",
-              "Ensures consistent strategies across home, school, and community"
+              "Offers strategies for handling emotional and behavioral challenges",
+              "Enhances coordination between home, school, and community settings"
             ].map((item, i) => (
               <div
                 key={i}
@@ -71,21 +71,21 @@ export default function FC() {
       {/* 🍃 WHO QUALIFIES */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          Who Qualifies for FC Services?
+          Who Can Receive FC Services?
         </h2>
 
         <p className="text-gray-700 text-lg mt-6 text-center max-w-3xl mx-auto">
-          Family Consultation is available to families of children enrolled in the 
-          Maryland Autism Waiver who need behavioral support, caregiver training, 
-          or assistance implementing strategies at home.
+          Family Consultation is available to parents, caregivers, and households who seek 
+          expert guidance in supporting daily routines, communication, emotional growth, or 
+          behavior management for their child or loved one.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mt-16">
           {[
-            "Parents and caregivers of children enrolled in the Maryland Autism Waiver",
-            "Families needing support with behavior strategies",
-            "Caregivers struggling with routines, transitions, or daily challenges",
-            "Households needing guidance reinforcing IISS or Respite strategies"
+            "Parents or caregivers needing support with routines and structure",
+            "Families seeking guidance in communication or skill-building strategies",
+            "Households facing daily challenges and looking for consistent tools",
+            "Caregivers looking to strengthen confidence and understanding"
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-4">
               <div className="bg-[#23B14D] p-3 rounded-xl">
@@ -97,7 +97,7 @@ export default function FC() {
         </div>
       </section>
 
-      {/* 🍃 WHAT OUR FC PROVIDERS DO */}
+      {/* 🍃 WHAT FC PROVIDERS DO */}
       <section className="py-16 px-6 bg-[#F5FFF9]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-12">
@@ -106,12 +106,12 @@ export default function FC() {
 
           <div className="grid md:grid-cols-3 gap-10">
             {[
-              "Behavior support planning",
-              "Coaching caregivers on effective strategies",
-              "Improving communication between family & support teams",
-              "Helping manage challenging behaviors",
-              "Training families on skill-building techniques",
-              "Creating structured routines & visual supports"
+              "Developing structured routines and daily systems",
+              "Coaching caregivers on effective home strategies",
+              "Strengthening communication between family members",
+              "Providing guidance for emotional and behavioral challenges",
+              "Teaching practical, skill-building techniques",
+              "Creating visual supports and tools for home success"
             ].map((item, i) => (
               <div
                 key={i}
@@ -132,8 +132,9 @@ export default function FC() {
         </h3>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-lg mb-10">
-          Our Family Consultation services empower and support caregivers through 
-          personalized guidance, training, and evidence-based strategies.
+          Our Family Consultation services equip caregivers with the tools, 
+          knowledge, and confidence they need to support their child’s growth 
+          and well-being.
         </p>
 
         <a

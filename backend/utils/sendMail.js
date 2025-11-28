@@ -18,7 +18,7 @@ export const sendMail = async ({ to, subject, html, text, fromName }) => {
   const transporter = createTransporter();
 
   const mailOptions = {
-    from: `"${fromName || "Autism ABA Partners"}" <${process.env.ADMIN_EMAIL}>`,
+    from: `"${fromName || "PR5-Hearts Network"}" <${process.env.ADMIN_EMAIL}>`,
     to,
     subject,
     html,

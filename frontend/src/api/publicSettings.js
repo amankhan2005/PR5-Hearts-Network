@@ -1,7 +1,7 @@
-// src/api/publicSettings.js
+ // src/api/publicSettings.js
 
 // Correct BASE URL → only /api
-const API_BASE = import.meta.env.VITE_API_BASE || "https://autismpartner.onrender.com/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000/api";
 
 export const SERVER_BASE = API_BASE.replace("/api", ""); // this is fine
 

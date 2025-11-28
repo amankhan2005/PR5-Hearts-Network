@@ -1,72 +1,66 @@
  // models/contact.models.js
-// Mongoose schema for Contact / Lead submissions (USA Autism ABA Clinic)
-
 import mongoose from "mongoose";
 
 const contactSchema = new mongoose.Schema(
   {
-    // 🧩 Parent / Guardian Info
     parentName: { type: String, required: true, trim: true },
     email: { type: String, required: true, lowercase: true, trim: true },
     phone: { type: String, required: true, trim: true },
 
-    // 👶 Child / Client Info
     childName: { type: String, trim: true },
     childAge: { type: Number, min: 0, max: 25 },
 
-    // 📍 Location Info
     city: { type: String, trim: true },
     state: { type: String, trim: true },
     zipCode: { type: String, trim: true },
 
-    // 💬 Inquiry Details
     message: { type: String, required: true, trim: true },
+
+    /* ⭐ UPDATED ENUMS to match frontend + controller ⭐*/
     serviceInterest: {
       type: String,
-      enum: [
-        "ABA Therapy",
-        "Speech Therapy",
-        "Occupational Therapy",
-        "Behavioral Consultation",
-        "Other",
-      ],
-      default: "ABA Therapy",
+      enum: ["RC", "ISS", "FC", "GENERAL", "OTHER"],
+      default: "OTHER",
     },
+
     preferredContact: {
       type: String,
       enum: ["Call", "Email", "Text", "WhatsApp"],
       default: "Call",
     },
+
     bestTimeToReach: { type: String, trim: true },
 
-    // 📊 Marketing & Source Tracking
     leadSource: {
       type: String,
-      enum: ["Website", "Google Ads", "Facebook", "Referral", "Other"],
-      default: "Website",
+      enum: ["website", "google", "facebook", "referral", "other"],
+      default: "website",
     },
+
     utm: {
       campaign: String,
       medium: String,
       source: String,
     },
 
-    // 🧠 Internal (admin / therapist)
-    assignedStaff: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
+    assignedStaff: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+
     status: {
       type: String,
       enum: ["new", "contacted", "in-progress", "closed"],
       default: "new",
     },
 
-    // 🔐 Security & Logging
     ipAddress: String,
     userAgent: String,
   },
   { timestamps: true }
 );
 
-// Indexes for fast admin queries/search
 contactSchema.index({ createdAt: -1 });
 contactSchema.index({
   parentName: "text",

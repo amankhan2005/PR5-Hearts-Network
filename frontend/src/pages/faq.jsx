@@ -6,57 +6,57 @@ export default function FAQ() {
     "Respite Care (RC)": [
       {
         q: "What is Respite Care (RC)?",
-        a: "Respite Care provides temporary relief for families by offering safe and supervised care for children enrolled in the Autism Waiver."
+        a: "Respite Care provides temporary relief for families by offering safe, supervised, and structured support for their child or loved one."
       },
       {
         q: "Where is RC provided?",
-        a: "RC can be provided in the home or community settings depending on the family's needs."
+        a: "RC can be provided at home or in community settings depending on the family's needs and preferences."
       },
       {
         q: "Who delivers Respite Care?",
-        a: "Trained respite providers who ensure safety, structure, and support for the child."
+        a: "Trained respite providers who ensure safety, structure, engagement, and professional short-term support."
       },
       {
         q: "How does RC benefit families?",
-        a: "It gives caregivers time to rest, manage responsibilities, and reduce stress while their child is supported professionally."
+        a: "It allows caregivers time to rest, attend appointments, manage responsibilities, and reduce stress — while their child is in safe hands."
       }
     ],
 
-    "Intensive Individual Support Services (IISS)": [
+    "Individual Support Services (ISS)": [
       {
-        q: "What is IISS?",
-        a: "IISS offers one-on-one behavioral and adaptive skills training for children enrolled in the Maryland Autism Waiver."
+        q: "What is ISS?",
+        a: "ISS offers personalized one-on-one support focused on communication, daily routines, social interaction, emotional skills, and independence."
       },
       {
-        q: "Where is IISS delivered?",
-        a: "IISS is delivered at home or in the community to help children build real-life skills."
+        q: "Where is ISS delivered?",
+        a: "ISS can be provided at home, in the community, or in other natural environments to help individuals build real-life skills."
       },
       {
-        q: "What skills does IISS focus on?",
-        a: "Communication, social skills, independence, daily routines, emotional regulation, and behavior support."
+        q: "What skills does ISS focus on?",
+        a: "Communication, social interaction, independence, daily living routines, emotional regulation, and confidence-building."
       },
       {
-        q: "Who qualifies for IISS?",
-        a: "Children birth–21 enrolled in the Autism Waiver who need individualized behavioral or adaptive support."
+        q: "Who can receive ISS?",
+        a: "Children, youth, or individuals who benefit from guided support, skill-building, and structured one-on-one assistance."
       }
     ],
 
     "Family Consultation (FC)": [
       {
         q: "What is Family Consultation?",
-        a: "Family Consultation provides caregiver guidance, training, and behavior management strategies."
+        a: "Family Consultation provides caregivers with professional guidance, coaching, and strategies to support their child’s daily routines and personal development."
       },
       {
         q: "Why is FC important?",
-        a: "It equips parents with tools to manage behaviors, strengthen routines, and support daily skill development."
+        a: "It equips families with tools for communication, emotional support, structure, and building positive daily habits."
       },
       {
-        q: "Who receives FC services?",
-        a: "Parents and caregivers of children enrolled in the Autism Waiver."
+        q: "Who can receive FC services?",
+        a: "Parents or caregivers seeking assistance with routines, communication strategies, emotional support, or daily challenges."
       },
       {
         q: "How often does FC occur?",
-        a: "Frequency depends on the child's plan and family needs, usually a few times per month."
+        a: "Frequency varies based on family needs — typically a few times per month for ongoing guidance and support."
       }
     ]
   };
@@ -76,10 +76,10 @@ export default function FAQ() {
       {/* 🍃 HERO */}
       <section className="relative bg-green-600 py-20 px-6 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white">
-           FAQs
+          FAQs
         </h1>
         <p className="text-white text-xl mt-5 max-w-3xl mx-auto">
-          Find answers to common questions about our Maryland Autism Waiver services: RC, IISS, and FC.
+          Find answers to common questions about our support services: RC, ISS, and FC.
         </p>
         <div className="w-20 h-1.5 bg-white rounded-full mx-auto mt-8"></div>
       </section>
@@ -112,7 +112,8 @@ export default function FAQ() {
                       onClick={() => toggleFAQ(category, index)}
                       className="w-full flex items-center justify-between px-6 py-6 text-left group"
                     >
-                      <h3 className={`text-lg font-semibold 
+                      <h3
+                        className={`text-lg font-semibold 
                         ${isOpen ? "text-[#23B14D]" : "text-[#0A3F24] group-hover:text-[#23B14D]"}`}
                       >
                         {item.q}

@@ -1,4 +1,4 @@
- // src/components/GlobalSettings.jsx
+  // src/components/GlobalSettings.jsx
 import React, { useEffect, useState } from "react";
 import { fetchSettings, updateSettings } from "../api/settingsService";
 
@@ -26,7 +26,7 @@ function CenterModal({ open, title, message, onCancel, onConfirm, confirmText = 
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onCancel}></div>
       <div className="relative bg-white/95 backdrop-blur-sm rounded-2xl p-6 max-w-lg w-full shadow-2xl z-10 transform transition-all duration-300 scale-100">
-        <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-4">
+        <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full mx-auto mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
@@ -38,7 +38,7 @@ function CenterModal({ open, title, message, onCancel, onConfirm, confirmText = 
           <button onClick={onCancel} className="px-6 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors font-medium">
             {cancelText}
           </button>
-          <button onClick={onConfirm} className="px-6 py-2 rounded-xl bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all font-medium shadow-md hover:shadow-lg">
+          <button onClick={onConfirm} className="px-6 py-2 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 transition-all font-medium shadow-md hover:shadow-lg">
             {confirmText}
           </button>
         </div>
@@ -296,7 +296,7 @@ export default function GlobalSettings({ creds }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-green-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -306,8 +306,8 @@ export default function GlobalSettings({ creds }) {
         
         <div className="relative z-10 text-center">
           <div className="relative w-24 h-24 mx-auto mb-6">
-            <div className="absolute inset-0 border-4 border-green-200 rounded-full"></div>
-            <div className="absolute inset-0 border-4 border-transparent border-t-green-600 rounded-full animate-spin"></div>
+            <div className="absolute inset-0 border-4 border-orange-200 rounded-full"></div>
+            <div className="absolute inset-0 border-4 border-transparent border-t-orange-600 rounded-full animate-spin"></div>
             <div className="absolute inset-2 border-4 border-green-200 rounded-full"></div>
             <div className="absolute inset-2 border-4 border-transparent border-t-green-600 rounded-full animate-spin" style={{ animationDirection: "reverse", animationDuration: "1s" }} />
           </div>
@@ -319,7 +319,7 @@ export default function GlobalSettings({ creds }) {
 
   if (!settings) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-white to-green-50 relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-orange-50 via-white to-green-50 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -327,8 +327,8 @@ export default function GlobalSettings({ creds }) {
           }}></div>
         </div>
         
-        <div className="relative z-10 text-center bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-2xl p-16 border-2 border-green-100">
-          <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-100 to-green-100 rounded-3xl flex items-center justify-center shadow-inner">
+        <div className="relative z-10 text-center bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-2xl p-16 border-2 border-orange-100">
+          <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-orange-100 to-green-100 rounded-3xl flex items-center justify-center shadow-inner">
             <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -342,7 +342,7 @@ export default function GlobalSettings({ creds }) {
   const g = settings.global || {};
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-green-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -354,9 +354,9 @@ export default function GlobalSettings({ creds }) {
         <div className="space-y-8">
           {/* Header */}
           <div className="relative mb-10 animate-fadeInUp">
-            <div className="absolute -inset-4 bg-gradient-to-r from-green-500/10 via-green-500/10 to-green-500/10 rounded-[3rem] blur-3xl"></div>
+            <div className="absolute -inset-4 bg-gradient-to-r from-orange-500/10 via-green-500/10 to-orange-500/10 rounded-[3rem] blur-3xl"></div>
             <div className="relative flex items-center gap-3">
-              <div className="w-1.5 h-14 bg-gradient-to-b from-green-600 to-green-600 rounded-full" />
+              <div className="w-1.5 h-14 bg-gradient-to-b from-orange-600 to-green-600 rounded-full" />
               <div>
                 <h2 className="text-5xl font-black bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 bg-clip-text text-transparent">Global Settings</h2>
                 <p className="text-gray-600 font-semibold text-lg mt-1">Configure your application settings</p>
@@ -366,11 +366,11 @@ export default function GlobalSettings({ creds }) {
 
           {/* Logo */}
           <div className={`group relative animate-fadeInUp ${!sectionToggles.logo ? 'opacity-60' : ''}`} style={{ animationDelay: "100ms" }}>
-            <div className="absolute -inset-1 bg-gradient-to-r from-green-500 to-green-500 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-            <div className={`relative bg-white/90 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-3 border-green-200 hover:shadow-2xl transition-all duration-500 ${!sectionToggles.logo ? 'border-gray-300' : ''}`}>
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-amber-500 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className={`relative bg-white/90 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-3 border-orange-200 hover:shadow-2xl transition-all duration-500 ${!sectionToggles.logo ? 'border-gray-300' : ''}`}>
               <div className="flex items-center justify-between gap-3 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-gradient-to-b from-green-600 to-green-600 rounded-full" />
+                  <div className="w-1 h-8 bg-gradient-to-b from-orange-600 to-amber-600 rounded-full" />
                   <h3 className="font-black text-2xl text-gray-800">Logo</h3>
                 </div>
 
@@ -380,7 +380,7 @@ export default function GlobalSettings({ creds }) {
                       type="checkbox" 
                       checked={sectionToggles.logo} 
                       onChange={() => toggleSection("logo")} 
-                      className="w-5 h-5 text-green-600 rounded focus:ring-green-500" 
+                      className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" 
                     />
                     <span className="text-gray-600 font-medium">Enable Section</span>
                   </label>
@@ -390,9 +390,9 @@ export default function GlobalSettings({ creds }) {
               <div className="space-y-6">
                 <div>
                   <input type="file" accept="image/*" id="logo-upload" className="hidden" onChange={(e) => setLogoFile(e.target.files[0])} disabled={!sectionToggles.logo} />
-                  <label htmlFor="logo-upload" className={`flex items-center gap-3 w-full p-6 border-3 border-dashed rounded-2xl cursor-pointer transition-all ${sectionToggles.logo && toggles.logo ? "border-green-500 bg-green-50" : sectionToggles.logo ? "border-gray-200 bg-white/50 hover:border-green-300" : "border-gray-200 bg-gray-50 cursor-not-allowed"}`}>
+                  <label htmlFor="logo-upload" className={`flex items-center gap-3 w-full p-6 border-3 border-dashed rounded-2xl cursor-pointer transition-all ${sectionToggles.logo && toggles.logo ? "border-orange-500 bg-orange-50" : sectionToggles.logo ? "border-gray-200 bg-white/50 hover:border-orange-300" : "border-gray-200 bg-gray-50 cursor-not-allowed"}`}>
                     <div className="text-center">
-                      <div className={`w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-green-500 to-green-500 rounded-2xl flex items-center justify-center text-white shadow-lg ${!sectionToggles.logo ? 'opacity-50' : ''}`}>
+                      <div className={`w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center text-white shadow-lg ${!sectionToggles.logo ? 'opacity-50' : ''}`}>
                         <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
@@ -406,14 +406,14 @@ export default function GlobalSettings({ creds }) {
                 {g.logo && (
                   <div>
                     <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">Current Logo</label>
-                    <img src={g.logo} alt="logo preview" className={`h-24 rounded-2xl border-3 shadow-xl bg-white p-3 ${sectionToggles.logo ? 'border-green-200' : 'border-gray-300'}`} />
+                    <img src={g.logo} alt="logo preview" className={`h-24 rounded-2xl border-3 shadow-xl bg-white p-3 ${sectionToggles.logo ? 'border-orange-200' : 'border-gray-300'}`} />
                   </div>
                 )}
 
                 {sectionToggles.logo && (
                   <div className="flex items-center justify-end">
                     <label className="flex items-center gap-2 text-sm">
-                      <input type="checkbox" checked={!!toggles.logo} onChange={() => toggleField("logo")} className="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
+                      <input type="checkbox" checked={!!toggles.logo} onChange={() => toggleField("logo")} className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" />
                       <span className="text-gray-600">Update</span>
                     </label>
                   </div>
@@ -513,11 +513,11 @@ export default function GlobalSettings({ creds }) {
 
           {/* Social media section */}
           <div className={`group relative animate-fadeInUp ${!sectionToggles.social ? 'opacity-60' : ''}`} style={{ animationDelay: "300ms" }}>
-            <div className="absolute -inset-1 bg-gradient-to-r from-green-500 via-green-500 to-green-500 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-            <div className={`relative bg-white/90 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-3 border-green-200 hover:shadow-2xl transition-all duration-500 ${!sectionToggles.social ? 'border-gray-300' : ''}`}>
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-green-500 to-orange-500 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+            <div className={`relative bg-white/90 backdrop-blur-sm p-8 rounded-[2rem] shadow-xl border-3 border-orange-200 hover:shadow-2xl transition-all duration-500 ${!sectionToggles.social ? 'border-gray-300' : ''}`}>
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-1 h-8 bg-gradient-to-b from-green-600 to-green-600 rounded-full" />
+                  <div className="w-1 h-8 bg-gradient-to-b from-orange-600 to-green-600 rounded-full" />
                   <h3 className="font-black text-2xl text-gray-800">Social Media Links</h3>
                 </div>
                 <div className="flex items-center gap-3">
@@ -526,7 +526,7 @@ export default function GlobalSettings({ creds }) {
                       type="checkbox" 
                       checked={sectionToggles.social} 
                       onChange={() => toggleSection("social")} 
-                      className="w-5 h-5 text-green-600 rounded focus:ring-green-500" 
+                      className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" 
                     />
                     <span className="text-gray-600 font-medium">Enable Section</span>
                   </label>
@@ -539,7 +539,7 @@ export default function GlobalSettings({ creds }) {
                   <div className="flex-1">
                     <label className="block text-sm font-bold text-gray-700 mb-2">Facebook</label>
                     <input 
-                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
+                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
                       value={g.facebook || ""} 
                       onChange={(e) => setField("facebook", e.target.value)} 
                       disabled={!sectionToggles.social} 
@@ -548,7 +548,7 @@ export default function GlobalSettings({ creds }) {
                   {sectionToggles.social && (
                     <div className="pt-6">
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" checked={!!toggles.facebook} onChange={() => toggleField("facebook")} className="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
+                        <input type="checkbox" checked={!!toggles.facebook} onChange={() => toggleField("facebook")} className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" />
                         <span className="text-sm text-gray-600">Update</span>
                       </label>
                     </div>
@@ -560,7 +560,7 @@ export default function GlobalSettings({ creds }) {
                   <div className="flex-1">
                     <label className="block text-sm font-bold text-gray-700 mb-2">Instagram</label>
                     <input 
-                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
+                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
                       value={g.instagram || ""} 
                       onChange={(e) => setField("instagram", e.target.value)} 
                       disabled={!sectionToggles.social} 
@@ -569,7 +569,7 @@ export default function GlobalSettings({ creds }) {
                   {sectionToggles.social && (
                     <div className="pt-6">
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" checked={!!toggles.instagram} onChange={() => toggleField("instagram")} className="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
+                        <input type="checkbox" checked={!!toggles.instagram} onChange={() => toggleField("instagram")} className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" />
                         <span className="text-sm text-gray-600">Update</span>
                       </label>
                     </div>
@@ -581,7 +581,7 @@ export default function GlobalSettings({ creds }) {
                   <div className="flex-1">
                     <label className="block text-sm font-bold text-gray-700 mb-2">Twitter / X</label>
                     <input 
-                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
+                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
                       value={g.twitter || ""} 
                       onChange={(e) => setField("twitter", e.target.value)} 
                       disabled={!sectionToggles.social} 
@@ -590,7 +590,7 @@ export default function GlobalSettings({ creds }) {
                   {sectionToggles.social && (
                     <div className="pt-6">
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" checked={!!toggles.twitter} onChange={() => toggleField("twitter")} className="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
+                        <input type="checkbox" checked={!!toggles.twitter} onChange={() => toggleField("twitter")} className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" />
                         <span className="text-sm text-gray-600">Update</span>
                       </label>
                     </div>
@@ -602,7 +602,7 @@ export default function GlobalSettings({ creds }) {
                   <div className="flex-1">
                     <label className="block text-sm font-bold text-gray-700 mb-2">TikTok</label>
                     <input 
-                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
+                      className={`w-full border-2 p-4 rounded-2xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all ${sectionToggles.social ? 'border-gray-200' : 'border-gray-200 bg-gray-50'}`} 
                       value={g.tiktok || ""} 
                       onChange={(e) => setField("tiktok", e.target.value)} 
                       disabled={!sectionToggles.social} 
@@ -611,7 +611,7 @@ export default function GlobalSettings({ creds }) {
                   {sectionToggles.social && (
                     <div className="pt-6">
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" checked={!!toggles.tiktok} onChange={() => toggleField("tiktok")} className="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
+                        <input type="checkbox" checked={!!toggles.tiktok} onChange={() => toggleField("tiktok")} className="w-5 h-5 text-orange-600 rounded focus:ring-orange-500" />
                         <span className="text-sm text-gray-600">Update</span>
                       </label>
                     </div>
@@ -624,7 +624,7 @@ export default function GlobalSettings({ creds }) {
           {/* Save */}
           <div className="flex justify-end animate-fadeInUp" style={{ animationDelay: "400ms" }}>
             <button onClick={save} disabled={saving} className="group relative overflow-hidden px-10 py-5 rounded-2xl font-black text-lg text-white transition-all duration-300 hover:scale-105 shadow-2xl disabled:opacity-50">
-              <div className="absolute inset-0 bg-gradient-to-r from-green-600 via-green-500 to-green-600"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 via-orange-500 to-green-600"></div>
               <span className="relative flex items-center gap-3">
                 {saving ? (
                   <>
