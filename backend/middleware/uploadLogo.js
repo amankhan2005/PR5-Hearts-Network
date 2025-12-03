@@ -1,11 +1,9 @@
-import multer from "multer";
+ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
-// ---- Safe Dynamic Path (Works in Render, Local, Vercel) ----
-const uploadPath = path.join(process.cwd(), "uploads/settings");
-
-// Create folder if not exists
+// ---- Ensure folder exists ----
+const uploadPath = "uploads/settings";
 if (!fs.existsSync(uploadPath)) {
   fs.mkdirSync(uploadPath, { recursive: true });
 }
