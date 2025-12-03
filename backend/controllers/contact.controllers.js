@@ -38,6 +38,9 @@ const LEAD_SOURCE_MAP = {
 /* ----------------------------------------------------------- */
 /* CREATE INQUIRY                                              */
 /* ----------------------------------------------------------- */
+ /* ----------------------------------------------------------- */
+/* CREATE INQUIRY — FIXED (NO TIMEOUT, NO 502, NO CORS ISSUE)  */
+/* ----------------------------------------------------------- */
 export const createInquiry = async (req, res) => {
   try {
     let {
@@ -64,10 +67,11 @@ export const createInquiry = async (req, res) => {
       });
     }
 
-    // Fix bad enum values
+    // Normalization
     serviceInterest = SERVICE_MAP[serviceInterest] || "OTHER";
     leadSource = LEAD_SOURCE_MAP[leadSource] || "other";
 
+    // Save to DB FIRST
     const saved = await ContactLead.create({
       parentName: parentName.trim(),
       email: email.trim().toLowerCase(),
@@ -88,85 +92,56 @@ export const createInquiry = async (req, res) => {
       status: "new",
     });
 
-    /* ----------------------------------------------------------- */
-    /* ADMIN EMAIL (PR5-Hearts Network)                            */
-    /* ----------------------------------------------------------- */
-    const adminHtml = `
-      <h2 style="color:#064e3b;">📩 New Inquiry — PR5-Hearts Network</h2>
-
-      <p><strong>Parent/Guardian:</strong> ${escapeHtml(saved.parentName)}</p>
-      <p><strong>Email:</strong> ${escapeHtml(saved.email)}</p>
-      <p><strong>Phone:</strong> ${escapeHtml(saved.phone)}</p>
-
-      <p><strong>Child Name:</strong> ${escapeHtml(saved.childName || "N/A")}</p>
-      <p><strong>Child Age:</strong> ${escapeHtml(saved.childAge || "N/A")}</p>
-
-      <p><strong>Service Interested:</strong> ${escapeHtml(saved.serviceInterest)}</p>
-      <p><strong>Preferred Contact:</strong> ${escapeHtml(saved.preferredContact)}</p>
-      <p><strong>Best Time To Reach:</strong> ${escapeHtml(saved.bestTimeToReach || "N/A")}</p>
-
-      <p><strong>Location:</strong>
-        ${escapeHtml(saved.city || "")}, 
-        ${escapeHtml(saved.state || "")} 
-        ${escapeHtml(saved.zipCode || "")}
-      </p>
-
-      <p><strong>Message:</strong><br>${escapeHtml(saved.message)}</p>
-
-      <hr/>
-      <p><small>
-        Lead Source: ${escapeHtml(saved.leadSource)}<br/>
-        IP: ${escapeHtml(saved.ipAddress)}<br/>
-        User Agent: ${escapeHtml(saved.userAgent)}
-      </small></p>
-    `;
-
-    /* ----------------------------------------------------------- */
-    /* USER EMAIL — PR5-Hearts Network (Green Theme)               */
-    /* ----------------------------------------------------------- */
-    const userHtml = `
-      <div style="font-family: Arial; color: #333;">
-        <h2 style="color:#047857;">Thank You for Contacting PR5-Hearts Network</h2>
-
-        <p>Hello ${escapeHtml(saved.parentName)},</p>
-
-        <p>
-          Thank you for reaching out to PR5-Hearts Network.  
-          Our support team has received your request and will reach out shortly.
-        </p>
-
-        <p>
-          PR5-Hearts Network is committed to offering guidance, compassion, 
-          and essential support services tailored to every individual's needs.
-        </p>
-
-        <p>
-          We help families navigate medical care, educational planning, 
-          daily challenges, and developmental support with empathy and reliability.
-        </p>
-
-        <p>Warm regards,<br/><strong>PR5-Hearts Network Team</strong></p>
-      </div>
-    `;
-
-    await Promise.all([
-      sendMail({
-        to: process.env.ADMIN_EMAIL,
-        subject: "📩 New Inquiry — PR5-Hearts Network",
-        html: adminHtml,
-      }),
-      sendMail({
-        to: saved.email,
-        subject: "Thank You — PR5-Hearts Network",
-        html: userHtml,
-      }),
-    ]);
-
-    return res.status(201).json({
+    /* ------------------ SEND RESPONSE IMMEDIATELY ------------------ */
+    res.status(201).json({
       ok: true,
-      message: "Inquiry saved & emails sent.",
+      message: "Inquiry saved successfully.",
       inquiry: saved,
     });
+
+    /* ------------------ BACKGROUND EMAIL TASK (SAFE) ------------------ */
+    (async () => {
+      try {
+        /* ADMIN EMAIL */
+        const adminHtml = `
+          <h2 style="color:#064e3b;">📩 New Inquiry — PR5-Hearts Network</h2>
+          <p><strong>Parent:</strong> ${escapeHtml(saved.parentName)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(saved.email)}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(saved.phone)}</p>
+          <p><strong>Message:</strong><br>${escapeHtml(saved.message)}</p>
+        `;
+
+        /* USER EMAIL */
+        const userHtml = `
+          <div style="font-family: Arial; color: #333;">
+            <h2 style="color:#047857;">Thank You for Contacting PR5-Hearts Network</h2>
+            <p>Hello ${escapeHtml(saved.parentName)},</p>
+            <p>Thank you for reaching out. We will contact you shortly.</p>
+          </div>
+        `;
+
+        // ❗DO NOT AWAIT → background mode (no blocking)
+        sendMail({
+          to: process.env.ADMIN_EMAIL,
+          subject: "📩 New Inquiry — PR5-Hearts Network",
+          html: adminHtml,
+        }).catch((e) =>
+          console.error("Admin mail error:", e?.message || e)
+        );
+
+        sendMail({
+          to: saved.email,
+          subject: "Thank You — PR5-Hearts Network",
+          html: userHtml,
+        }).catch((e) =>
+          console.error("User mail error:", e?.message || e)
+        );
+
+      } catch (err) {
+        console.error("Background mail task failed:", err.message);
+      }
+    })();
+
   } catch (err) {
     console.error("Inquiry Error:", err);
     return res.status(500).json({
@@ -176,6 +151,7 @@ export const createInquiry = async (req, res) => {
     });
   }
 };
+
 
 /* ----------------------------------------------------------- */
 /* GET ALL (Public)                                            */
