@@ -1,5 +1,5 @@
  // src/api/settingsService.js
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:3000/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000/api";
 
 async function fetchJson(path, opts = {}) {
   const res = await fetch(`${API_BASE}${path}`, opts);
