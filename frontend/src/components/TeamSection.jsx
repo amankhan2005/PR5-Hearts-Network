@@ -15,12 +15,12 @@ export default function TeamSection() {
       img: directorImg,
     },
     {
-      name: "Peter Ruchiri",
+      name: "Peter Ruhiri ",
       role: "Manager",
       img: managerImg,
     },
     {
-      name: "Robert Hughes",
+      name: "Miya Slouck",
       role: "Supervisor",
       img: supervisorImg,
     },
