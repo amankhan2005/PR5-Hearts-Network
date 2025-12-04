@@ -7,7 +7,7 @@ export default function IISS() {
       {/* 🍃 HERO SECTION */}
       <section className="relative bg-green-600 py-20 px-6 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight">
-          Individual Support Services (ISS)
+          Intensive Individual Support Services (IISS)
         </h1>
 
         <p className="text-white text-xl mt-5 max-w-3xl mx-auto">
@@ -18,14 +18,14 @@ export default function IISS() {
         <div className="w-20 h-1.5 bg-white rounded-full mx-auto mt-8"></div>
       </section>
 
-      {/* 🍃 WHAT IS ISS */}
+      {/* 🍃 WHAT IS IISS */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          What Is Individual Support Services?
+          What Is Intensive Individual Support Services (IISS)?
         </h2>
 
         <p className="text-gray-700 text-lg text-center mt-6 max-w-3xl mx-auto">
-          Individual Support Services (ISS) provide structured one-on-one assistance to help
+          Intensive Individual Support Services (IISS) provide structured one-on-one assistance to help
           individuals develop important life skills. These sessions focus on communication,
           social interaction, emotional growth, and daily living abilities — all tailored to
           the person’s unique needs and goals.
@@ -39,7 +39,7 @@ export default function IISS() {
         <div className="max-w-7xl mx-auto">
 
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-14">
-            Benefits of ISS Support
+            Benefits of IISS Support
           </h3>
 
           <div className="grid md:grid-cols-3 gap-10">
@@ -71,11 +71,11 @@ export default function IISS() {
       {/* 🍃 WHO QUALIFIES */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-[#0A3F24] text-center">
-          Who Can Receive ISS Services?
+          Who Can Receive IISS Services?
         </h2>
 
         <p className="text-gray-700 text-lg mt-6 text-center max-w-3xl mx-auto">
-          ISS services are available to children, youth, or individuals who may benefit from
+          IISS services are available to children, youth, or individuals who may benefit from
           structured skill-building, emotional support, or guided assistance in everyday routines.
         </p>
 
@@ -100,7 +100,7 @@ export default function IISS() {
       <section className="py-16 px-6 bg-[#F5FFF9]">
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-[#0A3F24] text-center mb-12">
-            What Our ISS Providers Help With
+            What Our IISS Providers Help With
           </h3>
 
           <div className="grid md:grid-cols-3 gap-10">
@@ -127,11 +127,11 @@ export default function IISS() {
       {/* 🍃 CTA */}
       <section className="py-20 px-6 bg-white text-center">
         <h3 className="text-4xl font-bold text-[#0A3F24] mb-6">
-          Need Individual Support Services?
+          Need Intensive Individual Support Services?
         </h3>
 
         <p className="text-gray-700 max-w-2xl mx-auto text-lg mb-10">
-          Contact us to learn more about ISS and explore how personalized one-on-one support
+          Contact us to learn more about IISS and explore how personalized one-on-one support
           can help your child or loved one build confidence and essential skills.
         </p>
 

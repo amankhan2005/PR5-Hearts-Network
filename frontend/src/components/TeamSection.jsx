@@ -32,7 +32,7 @@ export default function TeamSection() {
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#23B14D] to-green-800 py-16 sm:py-20">
+    <section className="w-full bg-gradient-to-b from-[#23B14D] to-green-800 py-28 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADING */}
