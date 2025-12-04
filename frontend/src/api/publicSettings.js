@@ -1,7 +1,7 @@
  // src/api/publicSettings.js
 
 // Correct BASE URL → only /api
-const API_BASE = import.meta.env.VITE_API_BASE || "https://pr5-hearts-network-1.onrender.com/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "https://pr5-hearts-network-inz8.onrender.com/api";
 
 export const SERVER_BASE = API_BASE.replace("/api", ""); // this is fine
 

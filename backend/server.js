@@ -46,6 +46,9 @@ const allowedOrigins = [
    "http://localhost:5174",
   "http://localhost:3000",
   "https://p5-heartsnetworks.netlify.app",
+  "https://pr5heartnetworks.netlify.app",
+  "https://pr5-heartsnetwork.com",
+  "pr5-heartsnetwork.com",
    
   ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(",").map((u) => u.trim()) : []),
 ].filter(Boolean);
