@@ -11,7 +11,7 @@ export default function Hero() {
     description:
       "Looking for reliable support related to medical needs, educational guidance, or personal development? We assist individuals and families with trusted resources — provided with care, clarity, and confidence.\n\nFrom essential service connections to hands-on support, we ensure you're informed, empowered, and supported every step of the way.",
     buttonText: "Book A Consultation →",
-    buttonLink: "/contact",
+    buttonLink: "/contact-us",
     image: heroDefault, // default banner always shows
   });
 
