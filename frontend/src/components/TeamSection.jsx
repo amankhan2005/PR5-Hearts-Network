@@ -2,7 +2,7 @@
 import { FaUserTie } from "react-icons/fa";
 
 // Importing local images (each one for each designation)
-import directorImg from "../assets/Team/director.jpeg";
+import directorImg from "../assets/Team/director.png";
 import managerImg from "../assets/Team/manager.jpg";
 import supervisorImg from "../assets/Team/supervisor.jpg";
 import hrImg from "../assets/Team/hr.jpg";
@@ -10,7 +10,7 @@ import hrImg from "../assets/Team/hr.jpg";
 export default function TeamSection() {
   const team = [
     {
-      name: "Michael Anderson",
+      name: "Stella Marine",
       role: "Director",
       img: directorImg,
     },
